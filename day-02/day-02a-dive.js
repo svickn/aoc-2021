@@ -1,9 +1,12 @@
-const submarine = (start_X = 0, start_Y = 0) => { 
-  let X = start_X;
-  let Y = start_Y;
+const fs = require('fs');
+const readline = require('readline');
+
+const submarine = (start_position = 0, start_depth = 0) => { 
+  let X = start_position;
+  let Y = start_depth;
   return {
-    get X() { return X; },
-    get Y() { return Y; },
+    get position() { return X; },
+    get depth() { return Y; },
     forward: (units) => X += units,
     down: (units) => Y += units,
     up: (units) => Y -= units,
@@ -14,4 +17,31 @@ const submarine = (start_X = 0, start_Y = 0) => {
   }
 }
 
-export { submarine }
+const processDirections = async (directions, sub) => {
+  for await (const direction of directions) {
+    const command = direction.split(' ');
+
+    console.log(direction)
+
+    sub[command[0]](parseInt(command[1]));
+  }
+
+  return sub;
+}
+
+const processDirectionsFromFile = async (filePath, sub) => {
+  const fileStream = fs.createReadStream(filePath);
+
+  // Note: we use the crlfDelay option to recognize all instances of CR LF
+  // ('\r\n') as a single line break.
+  const directions = readline.createInterface({
+    input: fileStream,
+    crlfDelay: Infinity
+  });
+
+  await processDirections(directions, sub);
+}
+
+exports.submarine = submarine;
+exports.processDirections = processDirections;
+exports.processDirectionsFromFile = processDirectionsFromFile;
