@@ -21,8 +21,6 @@ const processDirections = async (directions, sub) => {
   for await (const direction of directions) {
     const command = direction.split(' ');
 
-    console.log(direction)
-
     sub[command[0]](parseInt(command[1]));
   }
 
@@ -39,7 +37,7 @@ const processDirectionsFromFile = async (filePath, sub) => {
     crlfDelay: Infinity
   });
 
-  await processDirections(directions, sub);
+  return await processDirections(directions, sub);
 }
 
 exports.submarine = submarine;

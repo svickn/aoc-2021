@@ -57,21 +57,25 @@ test('processDirections - Directions translated to sub', async () => {
     'forward 2',
   ];
 
-  // using a set since it provides an iterator much like the filestream readline would.
-  await processDirections(new Set(directions), mySub);
+  await processDirections(directions, mySub);
 
   expect(mySub.position).toBe(15);
   expect(mySub.depth).toBe(10);
 })
 
 test('processDirectionsFromFile - Directions translated to sub', async () => {
-  jest.setTimeout(10000);
-  
   const mySub = submarine();
 
-  await processDirectionsFromFile('./input_example.txt', mySub);
+  await processDirectionsFromFile('./day-02/input_example.txt', mySub);
 
-  console.log(mySub.position, mySub.depth);
   expect(mySub.position).toBe(15);
   expect(mySub.depth).toBe(10);
+})
+
+test('Day 02a - Solution', async () => {
+  const mySub = submarine();
+
+  await processDirectionsFromFile('./day-02/input.txt', mySub);
+
+  expect(mySub.position * mySub.depth).toMatchInlineSnapshot(`1698735`);
 })
