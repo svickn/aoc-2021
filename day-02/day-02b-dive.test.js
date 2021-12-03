@@ -81,7 +81,7 @@ test('processDirectionsFromFile - Directions translated to sub', async () => {
   expect(mySub.aim).toBe(10);
 })
 
-test('Day 02a - Solution', async () => {
+test('Day 02b - Solution', async () => {
   const mySub = submarine();
 
   await processDirectionsFromFile('./day-02/input.txt', mySub);
