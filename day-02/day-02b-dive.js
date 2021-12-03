@@ -1,18 +1,25 @@
 const fs = require('fs');
 const readline = require('readline');
 
-const submarine = (start_position = 0, start_depth = 0) => { 
+const submarine = (start_position = 0, start_depth = 0, start_aim = 0) => { 
   let X = start_position;
   let Y = start_depth;
+  let aim = start_aim;
+
   return {
     get position() { return X; },
     get depth() { return Y; },
-    forward: (units) => X += units,
-    down: (units) => Y += units,
-    up: (units) => Y -= units,
+    get aim() { return aim; },
+    forward: (units) => {
+      X += units;
+      Y += units*aim;
+    },
+    down: (units) => aim += units,
+    up: (units) => aim -= units,
     reset: () => {
       X = start_position;
       Y = start_depth;
+      aim = start_aim;
     }
   }
 }
