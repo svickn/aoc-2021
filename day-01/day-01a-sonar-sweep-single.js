@@ -10,7 +10,7 @@ const processLineByLine = async () => {
   // ('\r\n') in input.txt as a single line break.
   const lines = readline.createInterface({
     input: fileStream,
-    crlfDelay: Infinity
+    crlfDelay: Infinity,
   });
 
   let lastDepth = null;
@@ -18,14 +18,14 @@ const processLineByLine = async () => {
 
   for await (const line of lines) {
     currentDepth = parseInt(line);
-    if(lastDepth && currentDepth > lastDepth) {
+    if (lastDepth && currentDepth > lastDepth) {
       increaseCount++;
     }
 
     lastDepth = currentDepth;
   }
 
-  console.log(`Total increase count: ${increaseCount}`)
-}
+  console.log(`Total increase count: ${increaseCount}`);
+};
 
 processLineByLine();

@@ -10,7 +10,7 @@ const processSlidingWindow = async () => {
   // ('\r\n') in input.txt as a single line break.
   const lines = readline.createInterface({
     input: fileStream,
-    crlfDelay: Infinity
+    crlfDelay: Infinity,
   });
 
   let rollingDepths = [];
@@ -20,9 +20,11 @@ const processSlidingWindow = async () => {
     currentDepth = parseInt(line);
     rollingDepths.push(currentDepth);
 
-    if(rollingDepths.length === 4) {
-      const previousWindow = rollingDepths.slice(0,3).reduce((a,b) => (a + b), 0);
-      const nextWindow = rollingDepths.slice(1,4).reduce((a,b) => (a + b), 0);
+    if (rollingDepths.length === 4) {
+      const previousWindow = rollingDepths
+        .slice(0, 3)
+        .reduce((a, b) => a + b, 0);
+      const nextWindow = rollingDepths.slice(1, 4).reduce((a, b) => a + b, 0);
 
       if (previousWindow < nextWindow) {
         increaseCount++;
@@ -32,7 +34,7 @@ const processSlidingWindow = async () => {
     }
   }
 
-  console.log(`Total increase count: ${increaseCount}`)
-}
+  console.log(`Total increase count: ${increaseCount}`);
+};
 
 processSlidingWindow();
