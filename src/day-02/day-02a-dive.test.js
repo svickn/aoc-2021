@@ -1,8 +1,5 @@
-const {
-  submarine,
-  processDirections,
-  processDirectionsFromFile,
-} = require('./day-02a-dive');
+const {submarine, processDirections} = require('./day-02a-dive');
+const {readLinesFromFile} = require('../../src/utils');
 
 test('Can run tests', () => {});
 
@@ -72,10 +69,11 @@ test('processDirections - Directions translated to sub', async () => {
   expect(mySub.depth).toBe(10);
 });
 
-test('processDirectionsFromFile - Directions translated to sub', async () => {
+test('processDirections - Directions translated to sub', async () => {
   const mySub = submarine();
+  const directions = await readLinesFromFile('./src/day-02/input_example.txt');
 
-  await processDirectionsFromFile('./day-02/input_example.txt', mySub);
+  await processDirections(directions, mySub);
 
   expect(mySub.position).toBe(15);
   expect(mySub.depth).toBe(10);
@@ -83,8 +81,9 @@ test('processDirectionsFromFile - Directions translated to sub', async () => {
 
 test('Day 02a - Solution', async () => {
   const mySub = submarine();
+  const directions = await readLinesFromFile('./src/day-02/input.txt');
 
-  await processDirectionsFromFile('./day-02/input.txt', mySub);
+  await processDirections(directions, mySub);
 
   expect(mySub.position * mySub.depth).toMatchInlineSnapshot(`1698735`);
 });

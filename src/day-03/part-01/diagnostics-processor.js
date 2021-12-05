@@ -23,19 +23,6 @@ const processDiagnostics = async lines => {
   };
 };
 
-const processDiagnosticsFromFile = async filePath => {
-  const fileStream = fs.createReadStream(filePath);
-
-  // Note: we use the crlfDelay option to recognize all instances of CR LF
-  // ('\r\n') as a single line break.
-  const directions = readline.createInterface({
-    input: fileStream,
-    crlfDelay: Infinity,
-  });
-
-  return await processDiagnostics(directions);
-};
-
 const getGammaRate = (lineCount, onesCount) => {
   let value = 0;
 
@@ -61,4 +48,3 @@ const getEpsilonRate = (lineCount, onesCount) => {
 };
 
 exports.processDiagnostics = processDiagnostics;
-exports.processDiagnosticsFromFile = processDiagnosticsFromFile;

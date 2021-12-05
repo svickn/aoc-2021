@@ -1,7 +1,5 @@
-const {
-  processDiagnostics,
-  processDiagnosticsFromFile,
-} = require('./diagnostics-processor');
+const {processDiagnostics} = require('./diagnostics-processor');
+const {readLinesFromFile} = require('../../../src/utils');
 
 test('processDiagnostics - Given a single character string, gives proper gamma and epsilon rates', async () => {
   const lines = ['0', '0', '1'];
@@ -21,15 +19,19 @@ test('processDiagnostics - Given a multi-character string, gives proper gamma an
   expect(actual.epsilon).toBe(0b101);
 });
 
-test('processDiagnosticsFromFile - Given example file, gives proper output', async () => {
-  const actual = await processDiagnosticsFromFile('./day-03/input_example.txt');
+test('processDiagnostics - Given example file, gives proper output', async () => {
+  const actual = await processDiagnostics(
+    await readLinesFromFile('./src/day-03/input_example.txt'),
+  );
 
   expect(actual.gamma).toBe(0b10110);
   expect(actual.epsilon).toBe(0b01001);
 });
 
 test('Day 03a - Solution', async () => {
-  const actual = await processDiagnosticsFromFile('./day-03/input.txt');
+  const actual = await processDiagnostics(
+    await readLinesFromFile('./src/day-03/input.txt'),
+  );
 
   expect(actual.gamma * actual.epsilon).toMatchInlineSnapshot(`1071734`);
 });
