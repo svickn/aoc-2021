@@ -1,6 +1,3 @@
-const fs = require('fs');
-const readline = require('readline');
-
 const submarine = (start_position = 0, start_depth = 0, start_aim = 0) => {
   let X = start_position;
   let Y = start_depth;

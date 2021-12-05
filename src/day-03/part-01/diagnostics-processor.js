@@ -1,6 +1,3 @@
-const fs = require('fs');
-const readline = require('readline');
-
 const processDiagnostics = async lines => {
   let lineCount = 0;
   const onesCount = [];
