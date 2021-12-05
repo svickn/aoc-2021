@@ -17,7 +17,7 @@ const processLineByLine = async () => {
   let increaseCount = 0;
 
   for await (const line of lines) {
-    currentDepth = parseInt(line);
+    const currentDepth = parseInt(line);
     if (lastDepth && currentDepth > lastDepth) {
       increaseCount++;
     }
