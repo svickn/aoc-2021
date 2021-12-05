@@ -14,9 +14,9 @@
   "scripts": {
     "test": "jest --watch",
     "lint": "eslint --ignore-path .gitignore --ext .js .",
-    "prettier": "prettier --ignore-path .gitignore \"**/*.{js,json}\"",
-    "format": "npm run prettier -- --write",
-    "check-format": "npm run prettier -- -l",
+    "prettier": "prettier --ignore-path .gitignore \"src/**/*.{js,json}\"",
+    "format": "npm run prettier --write",
+    "check-format": "npm run prettier -l",
     "validate": "npm-run-all --parallel check-format lint"
   },
   "repository": {
