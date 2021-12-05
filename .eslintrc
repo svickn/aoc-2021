@@ -1,0 +1,9 @@
+{
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "extends": ["eslint:recommended", "eslint-config-prettier"],
+  "rules": {
+    "strict": ["error", "never"]
+  }
+}
