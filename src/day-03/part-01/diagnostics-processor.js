@@ -12,8 +12,6 @@ const processDiagnostics = async lines => {
     }
   }
 
-  console.log(lineCount, onesCount);
-
   return {
     gamma: getGammaRate(lineCount, onesCount),
     epsilon: getEpsilonRate(lineCount, onesCount),
