@@ -1,4 +1,7 @@
-const {getLinesFromFileAsArray} = require('../../utils');
+const {
+  getLinesFromFileAsArray,
+  getNumberFromBinaryString,
+} = require('../../utils');
 const {
   getMostProminentBit,
   getLeastProminentBit,
@@ -66,4 +69,16 @@ test('getC02ScrubberRating - Example file gives correct result', async () => {
   const result = await getC02ScrubberRating(lines);
 
   expect(result).toBe('01010');
+});
+
+test('Day 03b - Solution', async () => {
+  const lines = await getLinesFromFileAsArray('./src/day-03/input.txt');
+
+  const oxygenRating = await getOxygenGeneratorRating(lines);
+  const c02Rating = await getC02ScrubberRating(lines);
+
+  expect(
+    getNumberFromBinaryString(oxygenRating) *
+      getNumberFromBinaryString(c02Rating),
+  ).toMatchInlineSnapshot(`6124992`);
 });

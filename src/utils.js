@@ -25,5 +25,18 @@ const getLinesFromFileAsArray = async filePath => {
   return output;
 };
 
+const getNumberFromBinaryString = input => {
+  let output = 0;
+
+  for (let i = input.length - 1; i >= 0; i--) {
+    if (input[i] === '1') {
+      output += 2 ** (input.length - i - 1);
+    }
+  }
+
+  return output;
+};
+
 exports.readLinesFromFile = readLinesFromFile;
 exports.getLinesFromFileAsArray = getLinesFromFileAsArray;
+exports.getNumberFromBinaryString = getNumberFromBinaryString;
