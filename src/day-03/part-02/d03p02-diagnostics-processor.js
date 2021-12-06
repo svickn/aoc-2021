@@ -39,16 +39,12 @@ const getLinesWithBitInPosition = async (input, position, bit) => {
   return output;
 };
 
-const getOxygenGeneratorRating = async input => {
+const getRating = async (input, getBit) => {
   let currentList = input;
   let i = 0;
   while (currentList.length !== 1) {
-    const mostProminentBit = await getMostProminentBit(currentList, i);
-    currentList = await getLinesWithBitInPosition(
-      currentList,
-      i,
-      mostProminentBit,
-    );
+    const bit = await getBit(currentList, i);
+    currentList = await getLinesWithBitInPosition(currentList, i, bit);
 
     i++;
   }
@@ -56,22 +52,11 @@ const getOxygenGeneratorRating = async input => {
   return currentList[0];
 };
 
-const getC02ScrubberRating = async input => {
-  let currentList = input;
-  let i = 0;
-  while (currentList.length !== 1) {
-    const leastProminentBit = await getLeastProminentBit(currentList, i);
-    currentList = await getLinesWithBitInPosition(
-      currentList,
-      i,
-      leastProminentBit,
-    );
+const getOxygenGeneratorRating = async input =>
+  await getRating(input, getMostProminentBit);
 
-    i++;
-  }
-
-  return currentList[0];
-};
+const getC02ScrubberRating = async input =>
+  await getRating(input, getLeastProminentBit);
 
 exports.getMostProminentBit = getMostProminentBit;
 exports.getLeastProminentBit = getLeastProminentBit;
