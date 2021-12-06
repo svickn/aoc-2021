@@ -22,6 +22,20 @@ const getBit = async (comparator, tiebreakWinner, input, position) => {
     : '0';
 };
 
+const getLinesWithBitInPosition = async (input, position, bit) => {
+  const output = [];
+
+  for await (const line of input) {
+    console.log(line[position], bit);
+
+    if (line[position] === bit && !output.includes(line)) {
+      output.push(line);
+    }
+  }
+
+  return output;
+};
+
 const getMostProminentBit = (...args) =>
   getBit(comparator.mostCommon, '1', ...args);
 const getLeastProminentBit = (...args) =>
@@ -29,3 +43,4 @@ const getLeastProminentBit = (...args) =>
 
 exports.getMostProminentBit = getMostProminentBit;
 exports.getLeastProminentBit = getLeastProminentBit;
+exports.getLinesWithBitInPosition = getLinesWithBitInPosition;
