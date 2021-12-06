@@ -14,4 +14,16 @@ const readLinesFromFile = async filePath => {
   return directions;
 };
 
+const getLinesFromFileAsArray = async filePath => {
+  const lines = await readLinesFromFile(filePath);
+  const output = [];
+
+  for await (const line of lines) {
+    output.push(line);
+  }
+
+  return output;
+};
+
 exports.readLinesFromFile = readLinesFromFile;
+exports.getLinesFromFileAsArray = getLinesFromFileAsArray;
