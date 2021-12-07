@@ -37,6 +37,11 @@ const getNumberFromBinaryString = input => {
   return output;
 };
 
+const getNumbersFromString = input => {
+  return input.split(/[ ,]+/).map(x => parseInt(x));
+};
+
 exports.readLinesFromFile = readLinesFromFile;
 exports.getLinesFromFileAsArray = getLinesFromFileAsArray;
 exports.getNumberFromBinaryString = getNumberFromBinaryString;
+exports.getNumbersFromString = getNumbersFromString;
