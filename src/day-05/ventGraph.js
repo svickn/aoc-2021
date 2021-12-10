@@ -46,8 +46,8 @@ const getCoordinatePair = (line) => {
   ]
 }
 
-const detectHotSpots = (lines) => {
-  const coordLines = lines.map(l => getCoordinatesForLine(l, false));
+const detectHotSpots = (lines, includeDiagonals = false) => {
+  const coordLines = lines.map(l => getCoordinatesForLine(l, includeDiagonals));
   const coordCounts = []
   for (const coordSet of coordLines) {
     for (const coord of coordSet) {

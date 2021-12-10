@@ -38,7 +38,7 @@ test.each([
       [5, 9],
     ],
   ],
-  ['5,9 -> 7,2', []],
+  ['1,2 -> 2,3', []],
 ])('getCoordinatesForLine(%p) returns %p', (line, expected) => {
   const actual = getCoordinatesForLine(line);
 
