@@ -101,7 +101,7 @@ const findBingoWinner = (input) => {
     cards.push(bingoCard(input.slice(i, i+5)))
   }
 
-  for(currentNumber of numbersToCall) {
+  for(let currentNumber of numbersToCall) {
     cards.map(c => c.mark(currentNumber))
     
     const winners = cards.filter(c => c.isWinner)
@@ -124,7 +124,7 @@ const findLastBingoWinner = (input) => {
     cards.push(bingoCard(input.slice(i, i+5)))
   }
 
-  for(currentNumber of numbersToCall) {
+  for(let currentNumber of numbersToCall) {
     
     if(!lastWinner) {
       cards.map(c => c.mark(currentNumber))
