@@ -39,7 +39,7 @@ test.each([
     ],
   ],
   ['5,9 -> 7,2', []],
-])('getCoordinatesOnLine(%p) returns %p', (line, expected) => {
+])('getCoordinatesForLine(%p) returns %p', (line, expected) => {
   const actual = getCoordinatesForLine(line);
 
   expect(actual).toStrictEqual(expected);

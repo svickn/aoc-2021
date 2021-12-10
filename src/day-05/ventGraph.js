@@ -6,7 +6,12 @@ function getRange(startAt, endAt) {
   const end = startAt < endAt ? endAt : startAt;
   const start = endAt < startAt ? endAt : startAt;
 
-  return [...Array(end - start + 1).keys()].map(i => i + start);
+  const output = []
+  for(let i = start; i <= end; i++) {
+    output.push(i)
+  }
+
+  return output;
 }
 
 const getCoordinatesForLine = (line, includeDiagonals) => {
@@ -25,8 +30,20 @@ const getCoordinatesForLine = (line, includeDiagonals) => {
 }
 
 const getCoordinatePair = (line) => {
-  const matches = line.match(/([0-9]+),([0-9]+) -> ([0-9]+),([0-9]+)/i)
-  return [[parseInt(matches[1]),parseInt(matches[2])],[parseInt(matches[3]),parseInt(matches[4])]]
+  const firstComma = line.indexOf(',')
+  const arrow = line.indexOf('->')
+  const secondComma = line.indexOf(',', arrow)
+
+  return [
+    [
+      parseInt(line.substring(0, firstComma)),
+      parseInt(line.substring(firstComma+1, arrow))
+    ],
+    [
+      parseInt(line.substring(arrow+2, secondComma)),
+      parseInt(line.substring(secondComma+1))
+    ]
+  ]
 }
 
 const detectHotSpots = (lines) => {
