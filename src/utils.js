@@ -38,7 +38,7 @@ const getNumberFromBinaryString = input => {
 };
 
 const getNumbersFromString = input => {
-  return input.split(/[ ,]+/).map(x => parseInt(x));
+  return input.trim().split(/[ ,]+/).map(x => parseInt(x));
 };
 
 exports.readLinesFromFile = readLinesFromFile;
